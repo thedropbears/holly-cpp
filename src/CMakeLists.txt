@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 2.8)
 include(FRCDeploy)
 
-project(Davros)
+project(Holly)
 find_package(WPILib)
 include_directories(${WPILib_INCLUDE_DIRS})
 
@@ -20,13 +20,13 @@ macro (add_sources)
     endif()
 endmacro()
 
-add_sources(Davros.cpp
+add_sources(Holly.cpp
   OI.cpp
 )
 add_subdirectory(commands)
 add_subdirectory(subsystems)
 
-add_executable(Davros ${SOURCE_CODE})
-target_link_libraries(Davros ${WPILib_LIBRARY})
+add_executable(Holly ${SOURCE_CODE})
+target_link_libraries(Holly ${WPILib_LIBRARY})
 
-add_make_deploy(Davros 10.47.74.2) # where your team number is xxyy
+add_make_deploy(Holly 10.47.74.2) # where your team number is xxyy
