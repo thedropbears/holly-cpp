@@ -3,7 +3,7 @@
 #include "Chassis.h"
 #include "../Robotmap.h"
 
-Chassis::Chassis():Subsystem("Chassis") {
+Chassis::Chassis(): Subsystem("Chassis") {
 	
 }
 
@@ -11,11 +11,11 @@ Chassis::~Chassis() {
 	
 }
 
-void Chassis::drive() {
+void Chassis::InitDefaultCommand() {
 	
 }
 
-void Chassis::InitDefaultCommand() {
+void Chassis::drive(double vX, double vY, double vZ, double throttle) {
 	
 }
 
