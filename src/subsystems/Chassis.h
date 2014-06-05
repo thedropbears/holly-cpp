@@ -8,10 +8,14 @@ class Chassis: public Subsystem {
 	Chassis();
 	~Chassis();
 	void InitDefaultCommand();
-	void drive();
+	void drive(double vX, double vY, double vR, double throttle);
 	
 	private:
-	void liveWindow();
+	void liveWindow
+	static double limit(double num);
+	Victor* driveMotorA;
+	Victor* driveMotorB;
+	Victor* driveMotorC;
 	
 };
 
