@@ -22,6 +22,7 @@ endmacro()
 
 add_sources(Holly.cpp
   OI.cpp
+  CommandBase.cpp
 )
 add_subdirectory(commands)
 add_subdirectory(subsystems)
