@@ -23,4 +23,8 @@
 #define MOTOR_B_PWM 2
 #define MOTOR_C_PWM 3
 
+#define JOY_DRV_DEAD_X 0.05
+#define JOY_DRV_DEAD_Y 0.05
+#define JOY_DRV_DEAD_Z 0.15
+
 #endif

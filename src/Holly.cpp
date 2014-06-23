@@ -1,42 +1,54 @@
 #include "WPILib.h"
 #include "commands/ExampleCommand.h"
 #include "CommandBase.h"
+#include "Holly.h"
 
-class Holly : public IterativeRobot {
-private:
-	Command *autonomousCommand;
-	LiveWindow *lw;
+Holly :: Holly(){
+    
+}
+
+void Holly :: RobotInit() {
+    CommandBase::init();
+    autonomousCommand = new ExampleCommand();
+    lw = LiveWindow::GetInstance();
+}
 	
-	virtual void RobotInit() {
-		CommandBase::init();
-		autonomousCommand = new ExampleCommand();
-		lw = LiveWindow::GetInstance();
-	}
+void Holly :: AutonomousInit() {
+    autonomousCommand->Start();
+}
 	
-	virtual void AutonomousInit() {
-		autonomousCommand->Start();
-	}
+void Holly :: AutonomousPeriodic() {
+    Scheduler::GetInstance()->Run();
+}
 	
-	virtual void AutonomousPeriodic() {
-		Scheduler::GetInstance()->Run();
-	}
+void Holly :: TeleopInit() {
+    // This makes sure that the autonomous stops running when
+    // teleop starts running. If you want the autonomous to 
+    // continue until interrupted by another command, remove
+    // this line or comment it out.
+    autonomousCommand->Cancel();
+}
 	
-	virtual void TeleopInit() {
-		// This makes sure that the autonomous stops running when
-		// teleop starts running. If you want the autonomous to 
-		// continue until interrupted by another command, remove
-		// this line or comment it out.
-		autonomousCommand->Cancel();
-	}
+void Holly::TeleopPeriodic() {
+    Scheduler::GetInstance()->Run();
+    smartDashboard();
+}
+
+void Holly :: TestInit() {
+    
+}
 	
-	virtual void TeleopPeriodic() {
-		Scheduler::GetInstance()->Run();
-	}
-	
-	virtual void TestPeriodic() {
-		lw->Run();
-	}
-};
+void Holly :: TestPeriodic() {
+    lw->Run();
+}
+
+void Holly :: smartDashboard() {
+	// Update the Smart Dashboard values
+	// Call from TeleopPeriodic and AutonomousPeriodic
+    SmartDashboard::PutData(Scheduler::GetInstance());
+    
+    SmartDashboard::PutData(CommandBase::chassis);
+}
 
 START_ROBOT_CLASS(Holly);
 
