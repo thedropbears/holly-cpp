@@ -1,8 +1,25 @@
 #include "OI.h"
 #include "Robotmap.h"
 
+#include "commands/WinchLoosen.h"
+#include "commands/WinchTension.h"
+#include "commands/GyroReset.h"
+#include "commands/TogglePimpin.h"
+
 OI::OI() {
     joyDrv = new Joystick(1);
+    
+    winchTensionButton = new JoystickButton (joyDrv, WINCH_TENSION_BUTTON);
+    winchTensionButton->WhileHeld(new WinchTension());
+    
+    winchLoosenButton = new JoystickButton (joyDrv, WINCH_LOOSEN_BUTTON);
+    winchLoosenButton->WhileHeld(new WinchLoosen());
+    
+    gyroResetButton = new JoystickButton (joyDrv, GYRO_RESET_BUTTON);
+    gyroResetButton->WhenPressed(new GyroReset());
+    
+    pimpButton = new JoystickButton (joyDrv, PIMP_ROLL_BUTTON);
+    pimpButton->WhenPressed(new TogglePimpin());
 }
 
 
@@ -32,3 +49,4 @@ double OI::getJoyDrvZ(){
 double OI::getJoyDrvThrottle(){
 	return (joyDrv->GetTwist()-1.0)/2.0;
 }
+

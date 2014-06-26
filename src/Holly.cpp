@@ -1,7 +1,8 @@
 #include "WPILib.h"
-#include "commands/ExampleCommand.h"
+#include "commands/AutonomousCommandGroup.h"
 #include "CommandBase.h"
 #include "Holly.h"
+
 
 Holly :: Holly(){
     
@@ -9,12 +10,14 @@ Holly :: Holly(){
 
 void Holly :: RobotInit() {
     CommandBase::init();
-    autonomousCommand = new ExampleCommand();
+    autonomousCommand = new AutonomousCommandGroup();
     lw = LiveWindow::GetInstance();
 }
 	
 void Holly :: AutonomousInit() {
+    CommandBase::chassis->gyroReset();
     autonomousCommand->Start();
+
 }
 	
 void Holly :: AutonomousPeriodic() {

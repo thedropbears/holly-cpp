@@ -11,15 +11,15 @@ CommandBase::CommandBase() : Command() {
 }
 
 // Initialize a single static instance of all of your subsystems to NULL
-ExampleSubsystem* CommandBase::examplesubsystem = NULL;
 OI* CommandBase::oi = NULL;
 Chassis* CommandBase::chassis = NULL;
+Winch* CommandBase::winch = NULL;
 
 void CommandBase::init() {
     // Create a single static instance of all of your subsystems. The following
 	// line should be repeated for each subsystem in the project.
-	examplesubsystem = new ExampleSubsystem();
     chassis = new Chassis();
+    winch = new Winch();
 	
 	oi = new OI();
 }

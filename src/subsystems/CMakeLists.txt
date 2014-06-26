@@ -1,4 +1,5 @@
 add_sources(
-ExampleSubsystem.cpp
 Chassis.cpp
+Winch.cpp
+GyroCorrection.cpp
 )

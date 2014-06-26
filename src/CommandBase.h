@@ -2,7 +2,7 @@
 #define COMMAND_BASE_H
 
 #include "subsystems/Chassis.h"
-#include "subsystems/ExampleSubsystem.h"
+#include "subsystems/Winch.h"
 #include "OI.h"
 
 
@@ -19,8 +19,8 @@ public:
 	static void init();
 	// Create a single static instance of all of your subsystems
 	static Chassis *chassis;
-	static ExampleSubsystem *examplesubsystem;
 	static OI *oi;
+    static Winch *winch;
 };
 
 #endif

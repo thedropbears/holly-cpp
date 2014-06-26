@@ -30,4 +30,4 @@ add_subdirectory(subsystems)
 add_executable(Holly ${SOURCE_CODE})
 target_link_libraries(Holly ${WPILib_LIBRARY})
 
-add_make_deploy(Holly 10.47.74.2) # where your team number is xxyy
+add_make_deploy(Holly 10.87.78.2) # where your team number is xxyy

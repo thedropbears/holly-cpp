@@ -4,16 +4,29 @@
 #include "../Robotmap.h"
 #include "../commands/HolonomicDrive.h"
 
-Chassis::Chassis(): Subsystem("Chassis") {
+Chassis::Chassis(): Subsystem("Chassis"),gyro(new Gyro(GYRO_PORT)) {
 	driveMotorA = new Victor (MOTOR_A_PWM);
     driveMotorB = new Victor (MOTOR_B_PWM);
     driveMotorC = new Victor (MOTOR_C_PWM);
+    
+    gyro->SetSensitivity(-Gyro::kDefaultVoltsPerDegreePerSecond);
+    gyro->SetPIDSourceParameter(Gyro :: kAngle);
+    correction = new GyroCorrection();
+    gyro_pid = new PIDController(-0.05,0,0,gyro,correction);
+    gyro_pid->SetInputRange(-360.0, 360.0);
+    gyro_pid->Enable();
+    
+    SetHeading = 0.0;
+    
+    weBePimpin = true;
 }
 
 Chassis::~Chassis() {
 	delete driveMotorA;
     delete driveMotorB;
     delete driveMotorC;
+    
+    delete gyro;
 }
 
 void Chassis::InitDefaultCommand() {
@@ -22,6 +35,49 @@ void Chassis::InitDefaultCommand() {
 
 void Chassis::drive(double vX, double vY, double vZ, double throttle) {
 	double vMotor[3];  
+    
+    
+    if(weBePimpin){
+		double heading = gyro->GetAngle()*3.14159/180.0;
+		double vXpimp = vX*cos(heading)+vY*sin(heading);
+		double vYpimp = -vX*sin(heading)+vY*cos(heading);
+		vX = vXpimp;
+		vY = vYpimp;
+	}
+	
+	double ax = log(JOYSTICK_X_EXPONENTIAL+1);
+	double ay = log(JOYSTICK_Y_EXPONENTIAL+1);
+	double az = log(JOYSTICK_Z_EXPONENTIAL+1);
+
+	
+	if (vX > 0) {
+		vX = (exp(ax*vX)-1)/JOYSTICK_X_EXPONENTIAL;
+	} else {
+		vX = -(exp(ax*-vX)-1)/JOYSTICK_X_EXPONENTIAL; 
+		}
+		
+	if (vY > 0) {
+		vY =(exp(ay*vY)-1)/JOYSTICK_Y_EXPONENTIAL;
+	} else {
+		vY = -(exp(ay*-vY)-1)/JOYSTICK_Y_EXPONENTIAL; 
+	}
+		
+	if (vZ > 0) {
+		vZ = (exp(az*vZ)-1)/JOYSTICK_Z_EXPONENTIAL;
+	} else {
+		vZ = -(exp(az*-vZ)-1)/JOYSTICK_Z_EXPONENTIAL; 
+	}
+	if (weBePimpin){
+	if (vZ == 0) {
+        vZ = correction->correction;
+    } else {
+        SetHeading = gyro->GetAngle();
+        gyro_pid->Reset();
+        gyro_pid->SetSetpoint(SetHeading);
+        gyro_pid->Enable();
+        correction->correction = 0;
+    }
+    }
     
     vMotor[0] = (vX*0) - vY -vZ;
     vMotor[1] = -(vX*sqrt(3) /2.0 + vY/2.0 -vZ);
@@ -46,6 +102,15 @@ void Chassis::drive(double vX, double vY, double vZ, double throttle) {
     SmartDashboard::PutNumber("Motor A", vMotor[0]);
     SmartDashboard::PutNumber("Motor B", vMotor[1]);
     SmartDashboard::PutNumber("Motor C", vMotor[2]);
+    SmartDashboard::PutNumber("gyro Heading (deg)", gyro->GetAngle());
+    SmartDashboard::PutNumber("gyro SetPoint (deg)", SetHeading);
+    SmartDashboard::PutNumber("control loop output", correction->correction);
+    SmartDashboard::PutBoolean("are we Pimpin", weBePimpin);
+}
+
+
+void Chassis::gyroReset() {
+	gyro->Reset();
 }
 
 void Chassis::liveWindow() {

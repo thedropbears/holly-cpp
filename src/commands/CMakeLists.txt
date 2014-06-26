@@ -1,4 +1,8 @@
 add_sources(
-  ExampleCommand.cpp
+  AutonomousCommandGroup.cpp
   HolonomicDrive.cpp
+  WinchTension.cpp
+  WinchLoosen.cpp
+  GyroReset.cpp
+  TogglePimpin.cpp
 )
