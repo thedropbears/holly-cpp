@@ -12,7 +12,7 @@ Chassis::Chassis(): Subsystem("Chassis"),gyro(new Gyro(GYRO_PORT)) {
     gyro->SetSensitivity(-Gyro::kDefaultVoltsPerDegreePerSecond);
     gyro->SetPIDSourceParameter(Gyro :: kAngle);
     correction = new GyroCorrection();
-    gyro_pid = new PIDController(-0.05,0,0,gyro,correction);
+    gyro_pid = new PIDController(-0.005 ,0,0,gyro,correction);
     gyro_pid->SetInputRange(-360.0, 360.0);
     gyro_pid->Enable();
     
@@ -67,15 +67,17 @@ void Chassis::drive(double vX, double vY, double vZ, double throttle) {
 	} else {
 		vZ = -(exp(az*-vZ)-1)/JOYSTICK_Z_EXPONENTIAL; 
 	}
-	if (weBePimpin){
-	if (vZ == 0) {
-        vZ = correction->correction;
-    } else {
+
+    	if (weBePimpin){
+	if (vZ != 0 || (abs(gyro->GetRate()) > 2 && !gyro_pid->IsEnabled())) {
+        
         SetHeading = gyro->GetAngle();
         gyro_pid->Reset();
         gyro_pid->SetSetpoint(SetHeading);
         gyro_pid->Enable();
         correction->correction = 0;
+    } else {
+        vZ = correction->correction;
     }
     }
     

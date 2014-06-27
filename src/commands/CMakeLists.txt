@@ -5,4 +5,6 @@ add_sources(
   WinchLoosen.cpp
   GyroReset.cpp
   TogglePimpin.cpp
+  DriveForward.cpp
+  AutonTension.cpp
 )

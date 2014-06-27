@@ -25,7 +25,7 @@
 
 #define JOY_DRV_DEAD_X 0.05
 #define JOY_DRV_DEAD_Y 0.05
-#define JOY_DRV_DEAD_Z 0.15
+#define JOY_DRV_DEAD_Z 0.25
 
 #define WINCH_MOTOR_PWM 5
 

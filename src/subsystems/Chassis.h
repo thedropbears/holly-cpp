@@ -14,6 +14,7 @@ class Chassis: public Subsystem {
         void gyroReset();
         
         bool weBePimpin;
+        PIDController *gyro_pid;
 	private:
         void liveWindow();
         
@@ -23,7 +24,7 @@ class Chassis: public Subsystem {
         
         Gyro* gyro;
         GyroCorrection *correction;
-        PIDController *gyro_pid;
+
         
         
         
