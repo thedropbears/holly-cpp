@@ -18,7 +18,7 @@ Chassis::Chassis(): Subsystem("Chassis"),gyro(new Gyro(GYRO_PORT)) {
     
     SetHeading = 0.0;
     
-    weBePimpin = true;
+    weBePimpin = false;
 }
 
 Chassis::~Chassis() {
@@ -82,8 +82,8 @@ void Chassis::drive(double vX, double vY, double vZ, double throttle) {
     }
     
     vMotor[0] = (vX*0) - vY -vZ;
-    vMotor[1] = -(vX*sqrt(3) /2.0 + vY/2.0 -vZ);
-    vMotor[2] = -(-vX*sqrt(3) /2.0 + vY/2.0 -vZ);
+    vMotor[1] = -(vX + vY/2.0 -vZ);
+    vMotor[2] = -(-vX + vY/2.0 -vZ);
     
     double vmax = 1.0; // sets maximum value to 1
 	for(int i = 0; i < 3; ++i){
