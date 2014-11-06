@@ -3,7 +3,7 @@ include(FRCDeploy)
 
 project(Holly)
 find_package(WPILib)
-include_directories(${WPILib_INCLUDE_DIRS})
+include_directories(${WPILib_INCLUDE_DIRS} lib .)
 
 macro (add_sources)
     file (RELATIVE_PATH _relPath "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
@@ -26,8 +26,9 @@ add_sources(Holly.cpp
 )
 add_subdirectory(commands)
 add_subdirectory(subsystems)
+add_subdirectory(lib)
 
 add_executable(Holly ${SOURCE_CODE})
-target_link_libraries(Holly ${WPILib_LIBRARY})
+target_link_libraries(Holly ${WPILib_LIBRARY} lib-4774)
 
-add_make_deploy(Holly 10.87.78.2) # where your team number is xxyy
+add_make_deploy(Holly 10.47.74.2) # where your team number is xxyy
