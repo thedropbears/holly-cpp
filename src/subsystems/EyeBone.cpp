@@ -2,7 +2,7 @@
 
 #include <cstdlib>
 
-EyeBone::EyeBone(): UdpReceiver(PORT, "EyeBone"){
+EyeBone::EyeBone(int port): UdpReceiver(port, "EyeBone"){
 }
 
 EyeBone::~EyeBone() {

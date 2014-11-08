@@ -9,7 +9,7 @@
 
 class EyeBone: public UdpReceiver {
     public:
-        EyeBone();
+        EyeBone(int port=PORT);
         ~EyeBone();
         double getTargetX();
         double getTargetY();
