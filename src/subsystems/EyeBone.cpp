@@ -8,7 +8,7 @@ EyeBone::EyeBone(int port): UdpReceiver(port, "EyeBone"){
 EyeBone::~EyeBone() {
 }
 
-int EyeBone::parseBroadcast(char* recv_buffer, int received_bytes) {
+int EyeBone::parsePacket(char* recv_buffer, int received_bytes) {
     char* end = recv_buffer;
     double next;
     for(int i = 0; i < 5; i++){
