@@ -12,7 +12,7 @@ int EyeBone::parsePacket(char* recv_buffer, int received_bytes) {
     char* end = recv_buffer;
     double next;
     for(int i = 0; i < PARSEDLEN; i++){
-        next=strtod(end,&end);
+        next=strtod(end+1,&end);
         parsed[i] = next;
     }
     return 0;
