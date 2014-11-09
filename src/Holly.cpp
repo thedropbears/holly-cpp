@@ -67,7 +67,6 @@ void Holly :: smartDashboard() {
 void Holly :: DisabledPeriodic() {
     SmartDashboard::PutData(CommandBase::dropboneimu);
     SmartDashboard::PutNumber("Yaw Angle: ", CommandBase::dropboneimu->getYawAngle()/3.14*180);
-    CommandBase::dropboneimu->resetYaw();
 }
 
 START_ROBOT_CLASS(Holly);

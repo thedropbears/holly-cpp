@@ -17,7 +17,7 @@ void PositionRobot::Execute() {
         
         vX = eyebone->getTargetY() - DESIRED_IMAGE_Y;
         vY = eyebone->getTargetX() - DESIRED_IMAGE_X;
-        vZ = eyebone->getTargetAngle() - DESIRED_IMAGE_ANGLE;
+        vZ = (eyebone->getTargetAngle() - DESIRED_IMAGE_ANGLE)/45;
         chassis->drive(vX, vY, vZ,1);
     }
 }

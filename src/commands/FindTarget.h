@@ -8,14 +8,14 @@
 class FindTarget: public CommandBase {
     public:
         FindTarget();
-    private:
-        static int directions[];
-        int cmd_no = 0;
         virtual void Execute();
         virtual bool IsFinished();
         virtual void Interrupted();
         virtual void End();
         virtual void Initialize();
+    private:
+        static int directions[];
+        int cmd_no = 0;
 };
 
 #endif

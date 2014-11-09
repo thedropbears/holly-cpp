@@ -4,7 +4,7 @@
 
 #include <math.h>
 
-int directions[] = {180, 157, 135, -157, -135};
+int FindTarget::directions[] = {180, 157, 135, -157, -135};
 
 FindTarget::FindTarget(): CommandBase("FindTarget") {
 }

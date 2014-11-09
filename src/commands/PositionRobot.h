@@ -17,12 +17,12 @@
 class PositionRobot: public CommandBase {
     public:
         PositionRobot();
-    private:
         virtual void Execute();
         virtual bool IsFinished();
         virtual void Interrupted();
         virtual void End();
         virtual void Initialize();
+    private:
         double vX, vY, vZ;
 };
 

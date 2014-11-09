@@ -121,6 +121,8 @@ void Chassis::setHeading(double newHeading) {
 
 void Chassis::headingChange(double change) {
     gyro_pid->Reset();
-    gyro_pid->SetSetpoint(CommandBase::dropboneimu->getYawAngle()+change);
+    double newHead = CommandBase::dropboneimu->getYawAngle()+change;
+    newHead = atan2(sin(newHead),cos(newHead)); //wrap to +- PI
+    gyro_pid->SetSetpoint(newHead);
     gyro_pid->Enable();
 }
