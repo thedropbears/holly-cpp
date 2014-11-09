@@ -3,13 +3,11 @@
 
 #include <subsystems/UdpReceiver.h>
 
-#define PORT 4775
-
-#define PARSEDLEN 5 // the number of elements we are expecting from the string that we will be parsing
+#define EYE_PARSEDLEN 5 // the number of elements we are expecting from the string that we will be parsing
 
 class EyeBone: public UdpReceiver {
     public:
-        EyeBone(int port=PORT);
+        EyeBone(int port=4775);
         ~EyeBone();
         double getTargetX();
         double getTargetY();
@@ -17,7 +15,7 @@ class EyeBone: public UdpReceiver {
         double getTargetHeight();
         double getTargetAngle();
     private:
-        double parsed[PARSEDLEN];
+        double parsed[EYE_PARSEDLEN];
         virtual int parsePacket(char* recv_buffer, int received_bytes);
 };
 
