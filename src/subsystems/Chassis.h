@@ -12,23 +12,22 @@ class Chassis: public Subsystem {
         void InitDefaultCommand();
         void drive(double vX, double vY, double vR, double throttle);
         void gyroReset();
-        
+
         bool weBePimpin;
         PIDController *gyro_pid;
+
+		void headingChange(double change);
+        void setHeading(double newHeading);
 	private:
         void liveWindow();
-        
+
         Victor* driveMotorA;
         Victor* driveMotorB;
         Victor* driveMotorC;
-        
+
         GyroCorrection *correction;
 
-        
-        
-        
         double SetHeading;
-	
 };
 
 #endif

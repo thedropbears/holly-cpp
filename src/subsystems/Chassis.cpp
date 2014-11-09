@@ -112,3 +112,15 @@ void Chassis::gyroReset() {
 
 void Chassis::liveWindow() {
 }
+
+void Chassis::setHeading(double newHeading) {
+    gyro_pid->Reset();
+    gyro_pid->SetSetpoint(newHeading);
+    gyro_pid->Enable();
+}
+
+void Chassis::headingChange(double change) {
+    gyro_pid->Reset();
+    gyro_pid->SetSetpoint(CommandBase::dropboneimu->getYawAngle()+change);
+    gyro_pid->Enable();
+}

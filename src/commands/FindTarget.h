@@ -1,15 +1,18 @@
 #ifndef FINDTARGET
 #define FINDTARGET
 
+#include <WPILib.h>
+
 class FindTarget: public Command {
     public:
-        
     private:
-        const int directions[] = {0, 22, -22, 45, -45};
+        static int directions[];
         int cmd_no = 0;
-        void Execute();
-        bool isFinished();
-        void
+        virtual void Execute();
+        virtual bool isFinished();
+        virtual void Interrupted();
+        virtual void End();
+        virtual void Initialize();
 };
 
 #endif

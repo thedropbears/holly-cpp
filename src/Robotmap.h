@@ -49,7 +49,7 @@
 
 #define PI 3.14159
 
-#define rad2deg(x) ((x)/180.0/PI)
+#define rad2deg(x) ((x)/180.0*PI)
 
 #define deg2rad(x) ((x)*PI/180)
 
