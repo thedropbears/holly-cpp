@@ -52,21 +52,17 @@ void Holly :: smartDashboard() {
     SmartDashboard::PutData(CommandBase::chassis);
 
     SmartDashboard::PutData(CommandBase::dropboneimu);
+    SmartDashboard::PutNumber("Yaw Angle: ", CommandBase::dropboneimu->getYawAngle()/3.14*180);
+    SmartDashboard::PutNumber("Yaw Rate: ", CommandBase::dropboneimu->getYawRate()/3.14*180);
 
     SmartDashboard::PutData(CommandBase::eyebone);
-
-    SmartDashboard::PutNumber("Yaw Angle: ", CommandBase::dropboneimu->getYawAngle()/3.14*180);
-
     SmartDashboard::PutNumber("Target X: ", CommandBase::eyebone->getTargetX());
-
     SmartDashboard::PutNumber("Target Y: ", CommandBase::eyebone->getTargetY());
-
     SmartDashboard::PutNumber("Target Angle: ", CommandBase::eyebone->getTargetAngle());
 }
 
 void Holly :: DisabledPeriodic() {
-    SmartDashboard::PutData(CommandBase::dropboneimu);
-    SmartDashboard::PutNumber("Yaw Angle: ", CommandBase::dropboneimu->getYawAngle()/3.14*180);
+    smartDashboard();
 }
 
 START_ROBOT_CLASS(Holly);
