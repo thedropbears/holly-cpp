@@ -26,8 +26,6 @@ class Chassis: public Subsystem {
         Victor* driveMotorC;
 
         GyroCorrection *correction;
-
-        double SetHeading;
 };
 
 #endif
