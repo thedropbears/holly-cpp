@@ -18,6 +18,7 @@ class Holly : public IterativeRobot {
         void TeleopPeriodic();
         void TestInit();
         void TestPeriodic();
+		void DisabledPeriodic();
 };
 
 #endif

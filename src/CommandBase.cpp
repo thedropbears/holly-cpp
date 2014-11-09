@@ -20,6 +20,6 @@ void CommandBase::init() {
 	// line should be repeated for each subsystem in the project.
     chassis = new Chassis();
     winch = new Winch();
-	
-	oi = new OI();
+    oi = new OI();
+    dropboneimu = new DropBoneImu();
 }

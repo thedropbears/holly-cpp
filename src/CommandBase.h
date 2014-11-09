@@ -3,6 +3,7 @@
 
 #include "subsystems/Chassis.h"
 #include "subsystems/Winch.h"
+#include "lib/subsystems/DropBoneImu.h"
 #include "OI.h"
 
 
@@ -21,6 +22,7 @@ public:
 	static Chassis *chassis;
 	static OI *oi;
     static Winch *winch;
+	static DropBoneImu* dropboneimu;
 };
 
 #endif

@@ -3,7 +3,6 @@
 #include "CommandBase.h"
 #include "Holly.h"
 
-
 Holly :: Holly(){
     
 }
@@ -51,6 +50,17 @@ void Holly :: smartDashboard() {
     SmartDashboard::PutData(Scheduler::GetInstance());
     
     SmartDashboard::PutData(CommandBase::chassis);
+
+    SmartDashboard::PutData(CommandBase::dropboneimu);
+
+    SmartDashboard::PutNumber("Yaw Angle: ", CommandBase::dropboneimu->getYawAngle()/3.14*180);
+}
+
+void Holly :: DisabledPeriodic() {
+    SmartDashboard::PutData(CommandBase::dropboneimu);
+    SmartDashboard::PutNumber("Yaw Angle: ", CommandBase::dropboneimu->getYawAngle()/3.14*180);
+    CommandBase::dropboneimu->resetYaw();
+    
 }
 
 START_ROBOT_CLASS(Holly);
