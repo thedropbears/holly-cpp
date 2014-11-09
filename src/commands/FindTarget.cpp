@@ -29,8 +29,8 @@ void FindTarget::Execute() {
     }
 }
 
-bool FindTarget::isFinished() {
-    if(std::abs(CommandBase::dropboneimu->getYawAngle()) < PI/3 && CommandBase::eyebone->getTargetWidth()!=0)
+bool FindTarget::IsFinished() {
+    if(std::abs(PI-CommandBase::dropboneimu->getYawAngle()) < PI/3 && CommandBase::eyebone->getTargetWidth()!=0)
         return true;
     return false;
 }

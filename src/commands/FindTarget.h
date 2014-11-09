@@ -9,7 +9,7 @@ class FindTarget: public Command {
         static int directions[];
         int cmd_no = 0;
         virtual void Execute();
-        virtual bool isFinished();
+        virtual bool IsFinished();
         virtual void Interrupted();
         virtual void End();
         virtual void Initialize();
