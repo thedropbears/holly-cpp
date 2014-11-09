@@ -22,4 +22,5 @@ void CommandBase::init() {
     winch = new Winch();
     oi = new OI();
     dropboneimu = new DropBoneImu();
+    eyebone = new EyeBone();
 }
