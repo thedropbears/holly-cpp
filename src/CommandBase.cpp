@@ -14,6 +14,8 @@ CommandBase::CommandBase() : Command() {
 OI* CommandBase::oi = NULL;
 Chassis* CommandBase::chassis = NULL;
 Winch* CommandBase::winch = NULL;
+DropBoneImu* CommandBase::dropboneimu = NULL;
+EyeBone* CommandBase::eyebone = NULL;
 
 void CommandBase::init() {
     // Create a single static instance of all of your subsystems. The following
