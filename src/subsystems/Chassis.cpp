@@ -3,17 +3,17 @@
 #include "Chassis.h"
 #include "../Robotmap.h"
 #include "../commands/HolonomicDrive.h"
+#include <CommandBase.h>
 
-Chassis::Chassis(): Subsystem("Chassis"),gyro(new Gyro(GYRO_PORT)) {
+Chassis::Chassis(): Subsystem("Chassis") {
 	driveMotorA = new Victor (MOTOR_A_PWM);
     driveMotorB = new Victor (MOTOR_B_PWM);
     driveMotorC = new Victor (MOTOR_C_PWM);
     
-    gyro->SetSensitivity(-Gyro::kDefaultVoltsPerDegreePerSecond);
-    gyro->SetPIDSourceParameter(Gyro :: kAngle);
+    
     correction = new GyroCorrection();
-    gyro_pid = new PIDController(-0.005 ,0,0,gyro,correction);
-    gyro_pid->SetInputRange(-360.0, 360.0);
+    gyro_pid = new PIDController(-0.005 ,0,0,CommandBase::dropboneimu,correction);
+    gyro_pid->SetInputRange(-2*PI, 2*PI);
     gyro_pid->Enable();
     
     SetHeading = 0.0;
@@ -22,11 +22,9 @@ Chassis::Chassis(): Subsystem("Chassis"),gyro(new Gyro(GYRO_PORT)) {
 }
 
 Chassis::~Chassis() {
-	delete driveMotorA;
+    delete driveMotorA;
     delete driveMotorB;
     delete driveMotorC;
-    
-    delete gyro;
 }
 
 void Chassis::InitDefaultCommand() {
@@ -38,7 +36,7 @@ void Chassis::drive(double vX, double vY, double vZ, double throttle) {
     
     
     if(weBePimpin){
-		double heading = gyro->GetAngle()*3.14159/180.0;
+		double heading = CommandBase::dropboneimu->getYawAngle()*3.14159/180.0;
 		double vXpimp = vX*cos(heading)+vY*sin(heading);
 		double vYpimp = -vX*sin(heading)+vY*cos(heading);
 		vX = vXpimp;
@@ -69,9 +67,9 @@ void Chassis::drive(double vX, double vY, double vZ, double throttle) {
 	}
 
     	if (weBePimpin){
-	if (vZ != 0 || (abs(gyro->GetRate()) > 2 && !gyro_pid->IsEnabled())) {
+	if (vZ != 0 || (abs(CommandBase::dropboneimu->getYawRate()) > 2 && !gyro_pid->IsEnabled())) {
         
-        SetHeading = gyro->GetAngle();
+        SetHeading = CommandBase::dropboneimu->getYawAngle();
         gyro_pid->Reset();
         gyro_pid->SetSetpoint(SetHeading);
         gyro_pid->Enable();
@@ -104,7 +102,7 @@ void Chassis::drive(double vX, double vY, double vZ, double throttle) {
     SmartDashboard::PutNumber("Motor A", vMotor[0]);
     SmartDashboard::PutNumber("Motor B", vMotor[1]);
     SmartDashboard::PutNumber("Motor C", vMotor[2]);
-    SmartDashboard::PutNumber("gyro Heading (deg)", gyro->GetAngle());
+    SmartDashboard::PutNumber("gyro Heading (deg)", CommandBase::dropboneimu->getYawAngle());
     SmartDashboard::PutNumber("gyro SetPoint (deg)", SetHeading);
     SmartDashboard::PutNumber("control loop output", correction->correction);
     SmartDashboard::PutBoolean("are we Pimpin", weBePimpin);
@@ -112,7 +110,7 @@ void Chassis::drive(double vX, double vY, double vZ, double throttle) {
 
 
 void Chassis::gyroReset() {
-	gyro->Reset();
+	CommandBase::dropboneimu->resetYaw();
 }
 
 void Chassis::liveWindow() {

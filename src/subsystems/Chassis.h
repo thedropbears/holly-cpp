@@ -3,6 +3,8 @@
 
 #include <WPILib.h>
 
+#define PI 3.14159
+
 #include "GyroCorrection.h"
 
 class Chassis: public Subsystem {
@@ -22,7 +24,6 @@ class Chassis: public Subsystem {
         Victor* driveMotorB;
         Victor* driveMotorC;
         
-        Gyro* gyro;
         GyroCorrection *correction;
 
         
