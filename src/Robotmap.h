@@ -47,5 +47,12 @@
 #define MAX_SPIN_RATE 360
 #define GYRO_KP 1.6
 
+#define PI 3.14159
+
+#define rad2deg(x) ((x)/180.0/PI)
+
+#define deg2rad(x) ((x)*PI/180)
+
+#define PID_THRESHOLD deg2rad(2)
 
 #endif
