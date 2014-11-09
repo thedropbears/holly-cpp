@@ -1,6 +1,6 @@
-#include "../Robotmap.h"
-#include "../CommandBase.h"
-#include "PositionRobot.h"
+#include <Robotmap.h>
+#include <CommandBase.h>
+#include <commands/PositionRobot.h>
 
 #include <math.h>
 

@@ -12,7 +12,7 @@
 
 #include <WPILib.h>
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class PositionRobot: public CommandBase {
     public:

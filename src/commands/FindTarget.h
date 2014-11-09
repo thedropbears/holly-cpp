@@ -3,7 +3,7 @@
 
 #include <WPILib.h>
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class FindTarget: public CommandBase {
     public:
