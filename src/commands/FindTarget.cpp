@@ -6,16 +6,19 @@
 
 int directions[] = {180, 157, 135, -157, -135};
 
+FindTarget::FindTarget(): CommandBase("FindTarget") {
+}
+
 void FindTarget::Initialize() {
-    Requires(CommandBase::chassis);
-    CommandBase::chassis->gyro_pid->Enable();
-    CommandBase::chassis->weBePimpin=true;
+    Requires(chassis);
+    chassis->gyro_pid->Enable();
+    chassis->weBePimpin=true;
 }
 
 void FindTarget::End() {
-    CommandBase::chassis->gyro_pid->Disable();
-    CommandBase::chassis->weBePimpin=false;
-    CommandBase::chassis->drive(0,0,0,0);
+    chassis->gyro_pid->Disable();
+    chassis->weBePimpin=false;
+    chassis->drive(0,0,0,0);
 }
 
 void FindTarget::Interrupted() {
@@ -23,14 +26,14 @@ void FindTarget::Interrupted() {
 }
 
 void FindTarget::Execute() {
-    if(CommandBase::chassis->gyro_pid->OnTarget()) {
-        CommandBase::chassis->setHeading(deg2rad(directions[cmd_no]));
+    if(chassis->gyro_pid->OnTarget()) {
+        chassis->setHeading(deg2rad(directions[cmd_no]));
         cmd_no++;
     }
 }
 
 bool FindTarget::IsFinished() {
-    if(std::abs(PI-CommandBase::dropboneimu->getYawAngle()) < PI/3 && CommandBase::eyebone->getTargetWidth()!=0)
+    if(std::abs(PI-dropboneimu->getYawAngle()) < PI/3 && eyebone->getTargetWidth()!=0)
         return true;
     return false;
 }

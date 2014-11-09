@@ -3,8 +3,11 @@
 
 #include <WPILib.h>
 
-class FindTarget: public Command {
+#include "../CommandBase.h"
+
+class FindTarget: public CommandBase {
     public:
+        FindTarget();
     private:
         static int directions[];
         int cmd_no = 0;

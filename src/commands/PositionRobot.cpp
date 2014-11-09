@@ -4,25 +4,26 @@
 
 #include <math.h>
 
+PositionRobot::PositionRobot(): CommandBase("PositionRobot"){
+}
+
 void PositionRobot::Initialize() {
-    Requires(CommandBase::chassis);
-    CommandBase::chassis->weBePimpin=false;
+    Requires(chassis);
+    chassis->weBePimpin=false;
 }
 
 void PositionRobot::Execute() {
-    if(!CommandBase::eyebone->timedOut()) {
-        target_x = CommandBase::eyebone->getTargetY(); //no i havent gone crazy, x, maps to y in the image
-        target_y = CommandBase::eyebone->getTargetX();
-        target_angle = CommandBase::eyebone->getTargetAngle();
-        double vX = target_x - X_POS;
-        double vY = target_y - Y_POS;
-        double vZ = target_angle - ANGLE_POS;
-        CommandBase::chassis->drive(vX, vY, vZ,1);
+    if(!eyebone->timedOut()) {
+        
+        vX = eyebone->getTargetY() - DESIRED_IMAGE_Y;
+        vY = eyebone->getTargetX() - DESIRED_IMAGE_X;
+        vZ = eyebone->getTargetAngle() - DESIRED_IMAGE_ANGLE;
+        chassis->drive(vX, vY, vZ,1);
     }
 }
 
-bool PositionRobot::isFinished() {
-    if(std::abs(target_x-X_POS) < X_TOL && std::abs(target_y-Y_POS) < Y_TOL && std::abs(target_angle-ANGLE_POS) < ANGLE_TOL)
+bool PositionRobot::IsFinished() {
+    if(std::abs(vX) < X_TOL && std::abs(vY) < Y_TOL && std::abs(vZ) < ANGLE_TOL)
         return true;
     return false;
 }
@@ -32,5 +33,5 @@ void PositionRobot::Interrupted() {
 }
 
 void PositionRobot::End() {
-    CommandBase::chassis->drive(0,0,0,0);
+    chassis->drive(0,0,0,0);
 }
