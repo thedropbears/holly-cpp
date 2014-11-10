@@ -62,6 +62,7 @@ void Holly :: smartDashboard() {
 }
 
 void Holly :: DisabledPeriodic() {
+    Scheduler::GetInstance()->Run();
     smartDashboard();
 }
 
