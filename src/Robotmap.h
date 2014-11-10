@@ -38,6 +38,8 @@
 
 #define PIMP_ROLL_BUTTON 12
 
+#define DEMO_BUTTON 10
+
 #define GYRO_PORT 1
 
 #define JOYSTICK_X_EXPONENTIAL 10

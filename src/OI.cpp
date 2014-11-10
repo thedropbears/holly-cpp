@@ -5,6 +5,7 @@
 #include "commands/WinchTension.h"
 #include "commands/GyroReset.h"
 #include "commands/TogglePimpin.h"
+#include "commands/DemoCommandGroup.h"
 
 OI::OI() {
     joyDrv = new Joystick(1);
@@ -20,6 +21,9 @@ OI::OI() {
     
     pimpButton = new JoystickButton (joyDrv, PIMP_ROLL_BUTTON);
     pimpButton->WhenPressed(new TogglePimpin());
+
+    demoButton = new JoystickButton (joyDrv, DEMO_BUTTON);
+    demoButton->WhenPressed(new DemoCommandGroup());
 }
 
 

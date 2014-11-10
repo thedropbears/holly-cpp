@@ -19,6 +19,7 @@ class OI {
         Button* winchLoosenButton;
         Button* gyroResetButton;
         Button* pimpButton;
+        Button* demoButton;
         
         double applyDeadZone(double,double);
 };
