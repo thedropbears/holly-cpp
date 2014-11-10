@@ -25,6 +25,7 @@ add_sources(Holly.cpp
   CommandBase.cpp
   commands/FindTarget.cpp
   commands/PositionRobot.cpp
+  commands/SpinOneEighty.cpp
 )
 add_subdirectory(commands)
 add_subdirectory(subsystems)

@@ -1,6 +1,5 @@
 #include <Robotmap.h>
-#include <CommandBase.h>
-#include <commands/FindTarget.h>
+#include "FindTarget.h"
 
 #include <math.h>
 
@@ -26,7 +25,7 @@ void FindTarget::Interrupted() {
 }
 
 void FindTarget::Execute() {
-    if(chassis->gyro_pid->OnTarget()) {
+    if(chassis->gyro_pid->OnTarget() && cmd_no < sizeof directions/sizeof(unsigned int)) {
         chassis->setHeading(deg2rad(directions[cmd_no]));
         cmd_no++;
     }

@@ -1,21 +1,20 @@
-#ifndef FINDTARGET
-#define FINDTARGET
+#ifndef SPINONEEIGHTY
+#define SPINONEEIGHTY
 
 #include <WPILib.h>
 
 #include <CommandBase.h>
 
-class FindTarget: public CommandBase {
+class SpinOneEighty: public CommandBase {
     public:
-        FindTarget();
+        SpinOneEighty();
         virtual void Execute();
         virtual bool IsFinished();
         virtual void Interrupted();
         virtual void End();
         virtual void Initialize();
     private:
-        static int directions[];
-        unsigned int cmd_no = 0;
+        bool spinning = true;
 };
 
 #endif
