@@ -8,6 +8,8 @@
 #define GYRO_P (-0.6)
 #define GYRO_I (0.0)
 #define GYRO_D (0.0)
+#define MOMENTUM_THRESHOLD (deg2rad(30.0)) // rad/s
+
 
 Chassis::Chassis(): Subsystem("Chassis") {
     driveMotorA = new Victor (MOTOR_A_PWM);
@@ -23,6 +25,7 @@ Chassis::Chassis(): Subsystem("Chassis") {
     gyro_pid->Enable();
     
     weBePimpin = true;
+    momentum = false;
 }
 
 Chassis::~Chassis() {
@@ -68,7 +71,19 @@ void Chassis::drive(double vX, double vY, double vZ, double throttle) {
     }
 
     if (weBePimpin){
-        if (vZ == 0 || (abs(CommandBase::dropboneimu->getYawRate()) < PID_THRESHOLD && gyro_pid->IsEnabled())) {
+        if (momentum && abs(CommandBase::dropboneimu->getYawRate()) < MOMENTUM_THRESHOLD) {
+            // we were spinning under momentum from a commanded turn
+            // but now the rate is low enough to set the setpoint
+            // and let PID take over control
+            momentum = false;
+        }
+        if (vZ != 0) {
+            // we are spinning under command
+            // allow the momentum to carry us when we finish
+            momentum = true;
+        }
+        
+        if (!momentum && gyro_pid->IsEnabled()) {
             vZ = correction->correction;
         } else {
             double SetHeading = CommandBase::dropboneimu->getYawAngle();

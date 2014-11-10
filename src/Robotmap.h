@@ -55,6 +55,4 @@
 
 #define deg2rad(x) ((x)*PI/180)
 
-#define PID_THRESHOLD deg2rad(2)
-
 #endif

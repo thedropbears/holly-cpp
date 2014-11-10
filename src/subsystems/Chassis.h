@@ -26,6 +26,7 @@ class Chassis: public Subsystem {
         Victor* driveMotorC;
 
         GyroCorrection *correction;
+        bool momentum; // is the spin carrying on under momentum
 };
 
 #endif
