@@ -23,10 +23,6 @@ endmacro()
 add_sources(Holly.cpp
   OI.cpp
   CommandBase.cpp
-  commands/FindTarget.cpp
-  commands/PositionRobot.cpp
-  commands/SpinOneEighty.cpp
-  commands/DemoCommandGroup.cpp
 )
 add_subdirectory(commands)
 add_subdirectory(subsystems)

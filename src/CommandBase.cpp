@@ -20,9 +20,9 @@ EyeBone* CommandBase::eyebone = NULL;
 void CommandBase::init() {
     // Create a single static instance of all of your subsystems. The following
 	// line should be repeated for each subsystem in the project.
+    dropboneimu = new DropBoneImu();
+    eyebone = new EyeBone();
     chassis = new Chassis();
     winch = new Winch();
     oi = new OI();
-    dropboneimu = new DropBoneImu();
-    eyebone = new EyeBone();
 }

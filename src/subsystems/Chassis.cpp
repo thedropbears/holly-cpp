@@ -5,7 +5,7 @@
 #include <commands/HolonomicDrive.h>
 #include <CommandBase.h> 
 
-#define GYRO_P (-0.005)
+#define GYRO_P (-0.6)
 #define GYRO_I (0.0)
 #define GYRO_D (0.0)
 
@@ -18,6 +18,7 @@ Chassis::Chassis(): Subsystem("Chassis") {
     correction = new GyroCorrection();
     gyro_pid = new PIDController(GYRO_P, GYRO_I, GYRO_D, CommandBase::dropboneimu,correction);
     gyro_pid->SetInputRange(-PI, PI);
+    gyro_pid->SetContinuous(true);
     gyro_pid->SetSetpoint(0.0);
     gyro_pid->Enable();
     

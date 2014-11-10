@@ -7,4 +7,7 @@ add_sources(
   TogglePimpin.cpp
   DriveForward.cpp
   AutonTension.cpp
+  FindTarget.cpp
+  PositionRobot.cpp
+  SpinOneEighty.cpp
 )
