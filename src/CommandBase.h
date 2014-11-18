@@ -1,10 +1,10 @@
 #ifndef COMMAND_BASE_H
 #define COMMAND_BASE_H
 
-#include "subsystems/Chassis.h"
-#include "subsystems/Winch.h"
+#include "subsystems/move/Chassis.h"
+#include "subsystems/move/Winch.h"
 #include "lib/subsystems/DropBoneImu.h"
-#include "subsystems/EyeBone.h"
+#include "subsystems/sensors/EyeBone.h"
 #include "OI.h"
 
 

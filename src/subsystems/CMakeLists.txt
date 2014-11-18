@@ -1,6 +1,3 @@
-add_sources(
-Chassis.cpp
-Winch.cpp
-GyroCorrection.cpp
-EyeBone.cpp
-)
+add_subdirectory(sensors)
+add_subdirectory(pid)
+add_subdirectory(move)
