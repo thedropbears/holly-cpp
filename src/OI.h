@@ -20,6 +20,7 @@ class OI {
         Button* gyroResetButton;
         Button* pimpButton;
         Button* demoButton;
+        Button* demoCancel;
         
         double applyDeadZone(double,double);
 };

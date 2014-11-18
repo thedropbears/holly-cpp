@@ -30,9 +30,9 @@ bool HolonomicDrive::IsFinished(){
 }
 
 void HolonomicDrive::End(){
-		
+	chassis->drive(0,0,0,0);	
 }
 
 void HolonomicDrive::Interrupted(){
-	chassis->drive(0,0,0,0);
+	End();
 }

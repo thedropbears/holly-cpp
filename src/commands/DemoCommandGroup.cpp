@@ -2,10 +2,12 @@
 #include "SpinOneEighty.h"
 #include "FindTarget.h"
 #include "PositionRobot.h"
+#include "WinchTension.h"
 
-DemoCommandGroup::DemoCommandGroup() {
-    AddSequential(new SpinOneEighty()); // so sponsors know that we are not cheating
+DemoCommandGroup::DemoCommandGroup(): CommandGroup("AutoShooting") {
+    Requires(CommandBase::chassis);
     AddSequential(new FindTarget());
     AddSequential(new PositionRobot());
     AddSequential(new SpinOneEighty()); // get ready to fire
+    AddSequential(new WinchTension());
 }

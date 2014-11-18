@@ -6,8 +6,8 @@
 #include <CommandBase.h> 
 
 #define GYRO_P (-0.6)
-#define GYRO_I (0.0)
-#define GYRO_D (0.0)
+#define GYRO_I (-0.00)
+#define GYRO_D (-0.0)
 #define MOMENTUM_THRESHOLD (deg2rad(30.0)) // rad/s
 
 
@@ -20,6 +20,7 @@ Chassis::Chassis(): Subsystem("Chassis") {
     correction = new GyroCorrection();
     gyro_pid = new PIDController(GYRO_P, GYRO_I, GYRO_D, CommandBase::dropboneimu,correction);
     gyro_pid->SetInputRange(-PI, PI);
+    //gyro_pid->SetOutputRange(0, 0.5);
     gyro_pid->SetContinuous(true);
     gyro_pid->SetSetpoint(0.0);
     gyro_pid->Enable();
@@ -41,10 +42,16 @@ void Chassis::InitDefaultCommand() {
 void Chassis::drive(double vX, double vY, double vZ, double throttle) {
     double vMotor[3];
 
+    if (throttle > 0.7){
+		throttle = 0.7;
+	}
+	
+	//vZ *= 0.9;
+
     if(weBePimpin){
         double heading = CommandBase::dropboneimu->getYawAngle();
-        double vXpimp = vX*cos(heading)+vY*sin(heading);
-        double vYpimp = -vX*sin(heading)+vY*cos(heading);
+        double vXpimp = vX*cos(heading)-vY*sin(heading);
+        double vYpimp = vX*sin(heading)+vY*cos(heading);
         vX = vXpimp;
         vY = vYpimp;
     }

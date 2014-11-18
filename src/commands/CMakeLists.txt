@@ -10,4 +10,5 @@ add_sources(
   FindTarget.cpp
   PositionRobot.cpp
   SpinOneEighty.cpp
+  DemoCommandGroup.cpp
 )

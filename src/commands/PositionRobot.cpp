@@ -8,7 +8,6 @@ PositionRobot::PositionRobot(): CommandBase("PositionRobot"){
 }
 
 void PositionRobot::Initialize() {
-    Requires(chassis);
     chassis->weBePimpin=false;
 }
 

@@ -16,6 +16,7 @@ void Holly :: RobotInit() {
 void Holly :: AutonomousInit() {
     CommandBase::chassis->gyroReset();
     autonomousCommand->Start();
+    CommandBase::chassis->gyroReset();
 
 }
 	
@@ -29,6 +30,7 @@ void Holly :: TeleopInit() {
     // continue until interrupted by another command, remove
     // this line or comment it out.
     autonomousCommand->Cancel();
+    CommandBase::chassis->gyroReset();
 }
 	
 void Holly::TeleopPeriodic() {

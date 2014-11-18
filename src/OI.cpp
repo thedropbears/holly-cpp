@@ -21,9 +21,14 @@ OI::OI() {
     
     pimpButton = new JoystickButton (joyDrv, PIMP_ROLL_BUTTON);
     pimpButton->WhenPressed(new TogglePimpin());
-
+    
+    DemoCommandGroup* demo_group = new DemoCommandGroup();
+    
     demoButton = new JoystickButton (joyDrv, DEMO_BUTTON);
-    demoButton->WhenPressed(new DemoCommandGroup());
+    demoButton->WhenPressed(demo_group);
+    
+    demoCancel = new JoystickButton (joyDrv, DEMO_CANCEL_BUTTON);
+    demoCancel->CancelWhenPressed(demo_group);
 }
 
 

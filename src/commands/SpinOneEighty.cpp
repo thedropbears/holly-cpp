@@ -6,7 +6,6 @@ SpinOneEighty::SpinOneEighty(): CommandBase("SpinOneEighty") {
 }
 
 void SpinOneEighty::Initialize() {
-    Requires(chassis);
     chassis->gyro_pid->Enable();
     chassis->weBePimpin=true;
 }
