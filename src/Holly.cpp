@@ -1,5 +1,5 @@
 #include "WPILib.h"
-#include "commands/AutonomousCommandGroup.h"
+#include "commands/auton/AutonomousCommandGroup.h"
 #include "CommandBase.h"
 #include "Holly.h"
 

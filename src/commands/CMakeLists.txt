@@ -1,14 +1,4 @@
-add_sources(
-  AutonomousCommandGroup.cpp
-  HolonomicDrive.cpp
-  WinchTension.cpp
-  WinchLoosen.cpp
-  GyroReset.cpp
-  TogglePimpin.cpp
-  DriveForward.cpp
-  AutonTension.cpp
-  FindTarget.cpp
-  PositionRobot.cpp
-  SpinOneEighty.cpp
-  DemoCommandGroup.cpp
-)
+add_subdirectory(systems)
+add_subdirectory(auton)
+add_subdirectory(pid)
+add_subdirectory(vision)

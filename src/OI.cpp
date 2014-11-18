@@ -1,11 +1,11 @@
 #include "OI.h"
 #include "Robotmap.h"
 
-#include "commands/WinchLoosen.h"
-#include "commands/WinchTension.h"
-#include "commands/GyroReset.h"
-#include "commands/TogglePimpin.h"
-#include "commands/DemoCommandGroup.h"
+#include "commands/systems/WinchLoosen.h"
+#include "commands/systems/WinchTension.h"
+#include "commands/pid/GyroReset.h"
+#include "commands/pid/TogglePimpin.h"
+#include "commands/vision/DemoCommandGroup.h"
 
 OI::OI() {
     joyDrv = new Joystick(1);
