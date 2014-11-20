@@ -2,7 +2,7 @@
 #include "SpinOneEighty.h"
 #include "FindTarget.h"
 #include "PositionRobot.h"
-#include "WinchTension.h"
+#include "../systems/WinchTension.h"
 
 DemoCommandGroup::DemoCommandGroup(): CommandGroup("AutoShooting") {
     Requires(CommandBase::chassis);

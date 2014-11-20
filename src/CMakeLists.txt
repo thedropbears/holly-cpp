@@ -24,8 +24,13 @@ add_sources(Holly.cpp
   OI.cpp
   CommandBase.cpp
 )
-add_subdirectory(commands)
-add_subdirectory(subsystems)
+add_subdirectory(commands/auton)
+add_subdirectory(commands/pid)
+add_subdirectory(commands/systems)
+add_subdirectory(commands/vision)
+add_subdirectory(subsystems/move)
+add_subdirectory(subsystems/pid)
+add_subdirectory(subsystems/sensors)
 add_subdirectory(lib)
 
 add_executable(Holly ${SOURCE_CODE})
