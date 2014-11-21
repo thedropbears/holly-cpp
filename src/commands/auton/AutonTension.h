@@ -1,7 +1,7 @@
 #ifndef AutonTension_H
 #define AutonTension_H
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class AutonTension: public CommandBase{
     public:

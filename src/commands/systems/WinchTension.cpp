@@ -1,5 +1,5 @@
 #include "WinchTension.h"
-#include "../Robotmap.h"
+#include "../../Robotmap.h"
 
 WinchTension :: WinchTension(): CommandBase ("WinchTension"){
     Requires (winch);

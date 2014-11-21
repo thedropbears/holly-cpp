@@ -1,7 +1,7 @@
 #ifndef TogglePimpin_H
 #define TogglePimpin_H
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class TogglePimpin: public CommandBase{
     public:    

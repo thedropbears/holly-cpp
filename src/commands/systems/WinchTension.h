@@ -1,7 +1,7 @@
 #ifndef WinchTension_H
 #define WinchTension_H
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class WinchTension: public CommandBase{
     public:

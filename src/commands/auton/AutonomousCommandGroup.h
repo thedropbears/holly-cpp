@@ -3,7 +3,7 @@
 
 #include <WPILib.h>
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class AutonomousCommandGroup: public CommandGroup{
 	public:

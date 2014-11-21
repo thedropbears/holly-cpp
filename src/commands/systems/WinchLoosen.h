@@ -1,7 +1,7 @@
 #ifndef WinchLoosen_H
 #define WinchLoosen_H
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class WinchLoosen: public CommandBase{
     public:

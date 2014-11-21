@@ -1,7 +1,7 @@
 #ifndef EYEBONE
 #define EYEBONE
 
-#include <subsystems/UdpReceiver.h>
+#include <lib/subsystems/UdpReceiver.h>
 
 #define EYE_PARSEDLEN 5 // the number of elements we are expecting from the string that we will be parsing
 

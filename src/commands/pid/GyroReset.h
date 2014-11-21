@@ -1,7 +1,7 @@
 #ifndef ResetGyro_H
 #define ResetGyro_H
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class GyroReset: public CommandBase{
     public:    

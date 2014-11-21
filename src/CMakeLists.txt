@@ -3,7 +3,7 @@ include(FRCDeploy)
 
 project(Holly)
 find_package(WPILib)
-include_directories(${WPILib_INCLUDE_DIRS} lib .)
+include_directories(${WPILib_INCLUDE_DIRS} . lib commands)
 
 macro (add_sources)
     file (RELATIVE_PATH _relPath "${CMAKE_SOURCE_DIR}" "${CMAKE_CURRENT_SOURCE_DIR}")
@@ -24,14 +24,10 @@ add_sources(Holly.cpp
   OI.cpp
   CommandBase.cpp
 )
-add_subdirectory(commands/auton)
-add_subdirectory(commands/pid)
-add_subdirectory(commands/systems)
-add_subdirectory(commands/vision)
-add_subdirectory(subsystems/move)
-add_subdirectory(subsystems/pid)
-add_subdirectory(subsystems/sensors)
+
 add_subdirectory(lib)
+add_subdirectory(commands)
+add_subdirectory(subsystems)
 
 add_executable(Holly ${SOURCE_CODE})
 target_link_libraries(Holly ${WPILib_LIBRARY} lib-4774)

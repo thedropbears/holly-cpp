@@ -1,7 +1,7 @@
 #ifndef HolonomicDrive_h
 #define HolonomicDrive_h
 
-#include "../CommandBase.h"
+#include <CommandBase.h>
 
 class HolonomicDrive: public CommandBase{
 	public:
