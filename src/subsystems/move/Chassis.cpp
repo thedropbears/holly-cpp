@@ -5,7 +5,7 @@
 #include <commands/systems/HolonomicDrive.h>
 #include <CommandBase.h> 
 
-#define GYRO_P (-0.6)
+#define GYRO_P (-0.8)
 #define GYRO_I (-0.00)
 #define GYRO_D (-0.0)
 #define MOMENTUM_THRESHOLD (deg2rad(30.0)) // rad/s

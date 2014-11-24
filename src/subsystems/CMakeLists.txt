@@ -27,5 +27,5 @@ AUX_SOURCE_DIRECTORY(sensors SensorsSources)
 add_sources(
   ${MoveSources}
   ${SubPidSources}
-  ${SystemsSources}
+  ${SensorsSources}
 )
