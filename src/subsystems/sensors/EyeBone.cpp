@@ -8,14 +8,6 @@ EyeBone::EyeBone(int port): UdpReceiver(port, "EyeBone"){
 EyeBone::~EyeBone() {
 }
 
-EyeBone::subSocketInit() {
-    
-}
-
-EyeBone::subReceivePacket() {
-    
-}
-
 int EyeBone::parsePacket(char* recv_buffer, int received_bytes) {
     char* end = recv_buffer;
     double next;
