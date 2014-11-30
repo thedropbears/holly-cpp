@@ -17,6 +17,8 @@ class EyeBone: public UdpReceiver {
     private:
         double parsed[EYE_PARSEDLEN];
         virtual int parsePacket(char* recv_buffer, int received_bytes);
+        void subSocketInit();
+        void subReceivePacket();
 };
 
 #endif
